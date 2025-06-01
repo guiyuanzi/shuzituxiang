@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>ImageLab - 图像处理平台</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        a.button {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>ImageLab 图像处理平台</h1>
+    <div class="menu">
+        <a href="/resize" class="button">图像缩放</a>
+        <a href="/rotate" class="button">图像旋转</a>
+        <a href="/segment" class="button">图像分割</a>
+        <a href="/enhance" class="button">图像增强</a>
+        <a href="/sharpen" class="button">图像锐化</a>
+        <a href="/smooth" class="button">图像平滑</a>
+        <a href="/ocr" class="button">文字识别</a>
+        <a href="/fruit" class="button">水果腐烂检测</a>
+    </div>
+</body>
+</html>

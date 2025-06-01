@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>图像分割 - ImageLab</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="file"] {
+            margin: 10px 0;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+        a.back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a.back-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>图像分割</h1>
+    <form action="/segment" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br>
+        <button type="submit">提交处理</button>
+    </form>
+
+    {% if result_img %}
+    <div class="result">
+        <h2>处理结果：</h2>
+        <img src="{{ url_for('static', filename='result/' + result_img) }}" alt="分割结果图">
+    </div>
+    {% endif %}
+
+    <a class="back-link" href="/">← 返回首页</a>
+</body>
+</html>

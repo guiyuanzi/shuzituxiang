@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文字识别 - ImageLab</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+        }
+        button {
+            padding: 10px 25px;
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e0a800;
+        }
+        .result {
+            background-color: #fff;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+            color: #333;
+            margin-top: 30px;
+        }
+        .preview {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .preview img {
+            max-width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        a.back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a.back-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>文字识别</h1>
+    <form action="/ocr" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br>
+        <button type="submit">识别文字</button>
+    </form>
+
+    {% if text_result %}
+    <div class="result">
+        <h2>识别结果：</h2>
+        <pre>{{ text_result }}</pre>
+    </div>
+    {% endif %}
+
+    {% if result_img %}
+    <div class="preview">
+        <h3>原图预览：</h3>
+        <img src="{{ url_for('static', filename='uploads/' + result_img) }}" alt="原图">
+    </div>
+    {% endif %}
+
+    <a class="back-link" href="/">← 返回首页</a>
+</body>
+</html>

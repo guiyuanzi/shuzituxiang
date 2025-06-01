@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>图像平滑 - ImageLab</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            padding: 30px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        input[type="file"] {
+            margin: 15px 0;
+        }
+        button {
+            padding: 10px 25px;
+            background-color: #20c997;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #17a589;
+        }
+        .result {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            border: 2px solid #bbb;
+            border-radius: 10px;
+        }
+        a.back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+        }
+        a.back-link:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>图像平滑</h1>
+    <form action="/smooth" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required><br>
+        <button type="submit">开始平滑</button>
+    </form>
+
+    {% if result_img %}
+    <div class="result">
+        <h2>平滑结果：</h2>
+        <img src="{{ url_for('static', filename='result/' + result_img) }}" alt="平滑图像">
+    </div>
+    {% endif %}
+
+    <a class="back-link" href="/">← 返回首页</a>
+</body>
+</html>
