@@ -1,50 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <title>ImageLab - 图像处理平台</title>
-    <style>
-        body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
-            padding: 40px;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        .menu {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-        a.button {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        a.button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImageLab - 图像处理平台</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #eef2f3, #d9e2ec);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 60px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      width: 90%;
+      margin-top: 40px;
+      padding: 20px;
+    }
+
+    a.button {
+      display: block;
+      text-align: center;
+      padding: 14px 20px;
+      background: #007bff;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+    }
+
+    a.button:hover {
+      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 86, 179, 0.4);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .menu {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>ImageLab 图像处理平台</h1>
-    <div class="menu">
-        <a href="/resize" class="button">图像缩放</a>
-        <a href="/rotate" class="button">图像旋转</a>
-        <a href="/segment" class="button">图像分割</a>
-        <a href="/enhance" class="button">图像增强</a>
-        <a href="/sharpen" class="button">图像锐化</a>
-        <a href="/smooth" class="button">图像平滑</a>
-        <a href="/ocr" class="button">文字识别</a>
-        <a href="/fruit" class="button">水果腐烂检测</a>
-    </div>
+  <h1>ImageLab 图像处理平台</h1>
+  <div class="menu">
+    <a href="/resize" class="button">图像缩放</a>
+    <a href="/rotate" class="button">图像旋转</a>
+    <a href="/segment" class="button">图像分割</a>
+    <a href="/enhance" class="button">图像增强</a>
+    <a href="/sharpen" class="button">图像锐化</a>
+    <a href="/smooth" class="button">图像平滑</a>
+    <a href="/ocr" class="button">文字识别</a>
+    <a href="/fruit" class="button">水果腐烂检测</a>
+  </div>
 </body>
 </html>

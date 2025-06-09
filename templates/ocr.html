@@ -1,94 +1,152 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>文字识别 - ImageLab</title>
-    <style>
-        body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
-            padding: 30px;
-            max-width: 800px;
-            margin: auto;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        input[type="file"] {
-            margin: 15px 0;
-        }
-        button {
-            padding: 10px 25px;
-            background-color: #ffc107;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #e0a800;
-        }
-        .result {
-            background-color: #fff;
-            border-left: 5px solid #ffc107;
-            padding: 15px;
-            border-radius: 10px;
-            white-space: pre-wrap;
-            font-family: Consolas, monospace;
-            color: #333;
-            margin-top: 30px;
-        }
-        .preview {
-            text-align: center;
-            margin-top: 30px;
-        }
-        .preview img {
-            max-width: 100%;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-        }
-        a.back-link {
-            display: block;
-            margin-top: 30px;
-            text-align: center;
-            text-decoration: none;
-            color: #007bff;
-        }
-        a.back-link:hover {
-            color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文字识别 - ImageLab</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f1f5f9, #fefce8);
+      padding: 30px;
+      max-width: 820px;
+      margin: auto;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="file"] {
+      margin: 15px 0;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 10px 25px;
+      background-color: #ffc107;
+      color: white;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+    }
+
+    button:hover {
+      background-color: #e0a800;
+      transform: translateY(-1px);
+    }
+
+    .result {
+      background-color: #fffefc;
+      border-left: 6px solid #ffc107;
+      padding: 20px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      font-family: Consolas, monospace;
+      color: #333;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .result h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: #444;
+    }
+
+    .preview {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    .preview h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .preview img:hover {
+      transform: scale(1.02);
+    }
+
+    a.back-link {
+      display: block;
+      margin-top: 30px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #007bff;
+      transition: color 0.3s ease;
+    }
+
+    a.back-link:hover {
+      color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px;
+      }
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>文字识别</h1>
-    <form action="/ocr" method="post" enctype="multipart/form-data">
-        <input type="file" name="image" accept="image/*" required><br>
-        <button type="submit">识别文字</button>
-    </form>
+  <h1>📝 文字识别</h1>
 
-    {% if text_result %}
-    <div class="result">
-        <h2>识别结果：</h2>
-        <pre>{{ text_result }}</pre>
-    </div>
-    {% endif %}
+  <form action="/ocr" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required><br>
+    <button type="submit">识别文字</button>
+  </form>
 
-    {% if result_img %}
-    <div class="preview">
-        <h3>原图预览：</h3>
-        <img src="{{ url_for('static', filename='uploads/' + result_img) }}" alt="原图">
-    </div>
-    {% endif %}
+  {% if text_result %}
+  <div class="result">
+    <h2>识别结果：</h2>
+    <pre>{{ text_result }}</pre>
+  </div>
+  {% endif %}
 
-    <a class="back-link" href="/">← 返回首页</a>
+  {% if result_img %}
+  <div class="preview">
+    <h3>原图预览：</h3>
+    <img src="{{ url_for('static', filename='uploads/' + result_img) }}" alt="原图">
+  </div>
+  {% endif %}
+
+  <a class="back-link" href="/">← 返回首页</a>
 </body>
 </html>
